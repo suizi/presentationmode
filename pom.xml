@@ -19,6 +19,7 @@
 
     <build>
         <plugins>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -63,6 +64,46 @@
                     <execution>
                         <id>default-jar</id>
                         <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>1.7.25</version>
+                <executions>
+                    <execution>
+                        <id>l4j-gui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <outfile>target/presentationmode-${project.version}.exe</outfile>
+                            <jar>target/presentationmode-${project.version}.jar</jar>
+                            <dontWrapJar>false</dontWrapJar>
+                            <classPath>
+                                <mainClass>at.suizi.tools.presentationmode.App</mainClass>
+                            </classPath>
+                            <jre>
+                                <minVersion>1.8</minVersion>
+                                <initialHeapSize>512</initialHeapSize>
+                                <maxHeapSize>1024</maxHeapSize>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>1.0.0.0</fileVersion>
+                                <txtFileVersion>1.0.0.0</txtFileVersion>
+                                <fileDescription>des</fileDescription>
+                                <copyright>Copyright (c) 2018 </copyright>
+                                <companyName>Suizi</companyName>
+                                <productVersion>0.0.0.1</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>Presentationmode</productName>
+                                <internalName>prmod</internalName>
+                                <originalFilename>Presentationmode.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
